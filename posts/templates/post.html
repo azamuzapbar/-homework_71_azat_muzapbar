@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ post.description }}</h1>
+    <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+    <p>Author: {{ post.author }}</p>
+    <p>Likes: {{ post.likes_count }}</p>
+    <div class="comments-container">
+        {% if post.comments.all %}
+            <h3>Comments:</h3>
+            {% for comment in post.comments.all %}
+                <div class="comment-card">
+                    <p>Author: {{ comment.author.username }}</p>
+                    <p>Text: {{ comment.text }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No comments yet.</p>
+
+        {% endif %}
+    </div>
+{% endblock %}
