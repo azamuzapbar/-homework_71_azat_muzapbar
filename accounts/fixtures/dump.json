@@ -1,0 +1,173 @@
+[
+{
+  "model": "accounts.account",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$IJbqTNBsZEa3IGyk6ip5oE$5U8aC0v12fBw5mWaeUt1Bx6heWtFobZ3SppaWmPBRnE=",
+    "last_login": "2023-04-20T23:32:12.240Z",
+    "is_superuser": true,
+    "username": "aza@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-19T17:30:23Z",
+    "email": "aza@gmail.com",
+    "avatar": "avatars/Без_имени_p9rGFZn.png",
+    "info": "",
+    "gender": "female",
+    "birth_date": null,
+    "phone_number": "",
+    "subscriptions_count": 0,
+    "subscribers_count": 1,
+    "groups": [],
+    "user_permissions": [],
+    "subscriptions": [
+      5,
+      1
+    ]
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 2,
+  "fields": {
+    "password": "aza",
+    "last_login": "2023-04-19T17:31:40Z",
+    "is_superuser": false,
+    "username": "aza",
+    "first_name": "aza",
+    "last_name": "aza",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-19T17:31:16Z",
+    "email": "azamuzapbar@gmail.com",
+    "avatar": "avatars/No_avatar.png",
+    "info": "aza",
+    "gender": "male",
+    "birth_date": "2023-04-19",
+    "phone_number": "87473066377",
+    "subscriptions_count": 0,
+    "subscribers_count": 1,
+    "groups": [
+      1
+    ],
+    "user_permissions": [],
+    "subscriptions": []
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$FzIHOK5Xeg0fzv1ysr7mHn$fSySF25LvuZKGloZgGeWi7AVLYr4ygY6OpttB0KTsLQ=",
+    "last_login": "2023-04-19T18:43:56.467Z",
+    "is_superuser": false,
+    "username": "takaka",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-19T18:43:56.083Z",
+    "email": "takaka@gmail.com",
+    "avatar": "avatars/No_avatar.png",
+    "info": "aza",
+    "gender": "male",
+    "birth_date": null,
+    "phone_number": "87473066378",
+    "subscriptions_count": 0,
+    "subscribers_count": 1,
+    "groups": [],
+    "user_permissions": [],
+    "subscriptions": []
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 4,
+  "fields": {
+    "password": "qaz",
+    "last_login": "2023-04-19T19:13:35Z",
+    "is_superuser": false,
+    "username": "qaz",
+    "first_name": "qaz",
+    "last_name": "qaz",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-19T19:13:26Z",
+    "email": "qaz@gmail.com",
+    "avatar": "avatars/Без_имени.png",
+    "info": "qaz",
+    "gender": "male",
+    "birth_date": "2023-04-19",
+    "phone_number": "87473066310",
+    "subscriptions_count": 0,
+    "subscribers_count": 1,
+    "groups": [
+      2
+    ],
+    "user_permissions": [],
+    "subscriptions": []
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$PEJShP3u3Xm8HSqAZWLpto$qTvD0nRdgGRSgL9IdZlTw8iArVHYYHGttJqmoR5BDI8=",
+    "last_login": "2023-04-21T00:51:18.210Z",
+    "is_superuser": true,
+    "username": "azat@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-20T23:24:00.981Z",
+    "email": "azat@gmail.com",
+    "avatar": "avatars/No_avatar.png",
+    "info": null,
+    "gender": "",
+    "birth_date": null,
+    "phone_number": "",
+    "subscriptions_count": 1,
+    "subscribers_count": 0,
+    "groups": [],
+    "user_permissions": [],
+    "subscriptions": [
+      5,
+      1,
+      3,
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 6,
+  "fields": {
+    "password": "brazer",
+    "last_login": "2023-04-20T23:26:01Z",
+    "is_superuser": false,
+    "username": "brazer",
+    "first_name": "brazer",
+    "last_name": "brazer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-20T23:25:53Z",
+    "email": "brazer@gmail.com",
+    "avatar": "avatars/user.png",
+    "info": "brazer",
+    "gender": "male",
+    "birth_date": "2023-04-20",
+    "phone_number": "87473066315",
+    "subscriptions_count": 0,
+    "subscribers_count": 0,
+    "groups": [
+      2
+    ],
+    "user_permissions": [],
+    "subscriptions": []
+  }
+}
+]

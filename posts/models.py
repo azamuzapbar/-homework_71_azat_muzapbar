@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.db import models
+
+from insta import settings
 
 
 class Post(models.Model):
@@ -8,6 +11,7 @@ class Post(models.Model):
     author = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='posts', null=False, blank=False,
                                on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name='Дата создания публикации', auto_now_add=True)
+    like_count = models.IntegerField(default=0)
 
 class Comment(models.Model):
     author = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='comments', null=False, blank=False,
@@ -16,3 +20,11 @@ class Comment(models.Model):
                              blank=False,
                              on_delete=models.CASCADE)
     text = models.CharField(verbose_name='Комментарий', null=False, blank=False, max_length=200)
+
+class Like(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likes')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')

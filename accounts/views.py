@@ -1,9 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
+from django.views import View
+from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
 
@@ -13,6 +17,27 @@ from posts.forms import SearchForm
 from posts.models import Post
 
 from accounts.forms import CustomUserCreationForm, UserChangeForm,LoginForm
+
+from accounts.models import Account
+
+
+def subscribe_to_account(request, pk):
+    account_to_subscribe = get_object_or_404(Account, pk=pk)
+
+    if request.user == account_to_subscribe:
+        messages.error(request, 'Вы не можете подписаться на себя.')
+        return redirect('index')
+
+    if account_to_subscribe.subscribers.filter(pk=request.user.pk).exists():
+        messages.info(request, 'Вы уже подписаны на этот аккаунт.')
+        return redirect('index')
+
+    request.user.subscriptions.add(account_to_subscribe)
+    account_to_subscribe.subscribers_count += 1
+    account_to_subscribe.save()
+    request.user.save()
+    messages.success(request, f'Вы успешно подписались на {account_to_subscribe.username}.')
+    return redirect('index')
 
 
 class LoginView(TemplateView):
@@ -29,12 +54,12 @@ class LoginView(TemplateView):
         if not form.is_valid():
             messages.error(request, "Некорректные данные")
             return redirect('login')
-        username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email= email, password=password)
         if not user:
             messages.warning(request, "Пользователь не найден")
-            return redirect('index')
+            return redirect('login')
         login(request, user)
         messages.success(request, 'Добро пожаловать')
         next = request.GET.get('next')
@@ -116,3 +141,32 @@ class UserChangeView(UpdateView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.object.pk})
+
+    def subscribe(self, user):
+        """
+        Add a subscription to another user
+        """
+        if self.subscriptions.filter(pk=user.pk).exists():
+            return False  # Subscription already exists
+        else:
+            self.subscriptions.add(user)
+            self.subscriptions_count += 1
+            self.save()
+            user.subscribers_count += 1
+            user.save()
+            return True
+
+    def unsubscribe(self, user):
+        """
+        Remove a subscription from another user
+        """
+        if self.subscriptions.filter(pk=user.pk).exists():
+            self.subscriptions.remove(user)
+            self.subscriptions_count -= 1
+            self.save()
+            user.subscribers_count -= 1
+            user.save()
+            return True
+        else:
+            return False
+
