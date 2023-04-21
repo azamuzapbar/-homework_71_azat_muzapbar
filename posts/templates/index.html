@@ -4,20 +4,10 @@
 {% block menu %}
 {% endblock %}
 {% block content %}
-
-<style>
-    .post-card {
-        margin: 15px;
-        max-width: 850px;
-        width: 100%;
-    }
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-</style>
-
+{% if request.user.is_authenticated %}
+{% else %}
+<p>You must be authenticated</p>
+{% endif %}
 <div class="row justify-content-center">
     {% for post in posts %}
     <div class="card post-card">
@@ -25,7 +15,6 @@ a {
             {% if post.image %}
             <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.description }}">
             {% endif %}
-
             <div class="post-card-footer">
                 <p class="card-text mb-0">
                     Likes: {{ post.like_count }}
@@ -38,10 +27,7 @@ a {
             </div>
         </div>
         <div class="card-footer">
-
-
             <p><a href="{% url 'comment_create' post.pk %}">Add a Comment</a></p>
-
         </div>
     </div>
     {% endfor %}

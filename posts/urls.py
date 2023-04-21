@@ -17,5 +17,5 @@ urlpatterns = [
     path('posts/add/', PostCreateView.as_view(), name='post_add'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/<int:pk>/comment/create/', CommentCreateView.as_view(), name='comment_create'),
-    path('posts/<int:post_id>/like/', post_add.like, name='like_post')
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('posts/<int:post_id>/like/', post_add.LikeView.as_view(), name='like_post'),
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -6,7 +7,7 @@ from posts.forms import CommentForm
 from posts.models import Post, Comment
 
 
-class CommentCreateView(CreateView):
+class CommentCreateView(LoginRequiredMixin, CreateView):
     template_name = 'comment_create.html'
     form_class = CommentForm
 
